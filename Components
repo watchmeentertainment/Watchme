@@ -1,0 +1,69 @@
+'use client';
+import { useState } from "react";
+import { Heart, MessageCircle, Image as ImageIcon, Video as VideoIcon } from "lucide-react";
+
+export default function WatchmeMockup() {
+  const [view, setView] = useState("login");
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+      <h1 className="text-4xl font-bold mb-6 text-purple-700">Watchme</h1>
+
+      {view === "login" && (
+        <div className="w-full max-w-sm p-6 shadow-2xl rounded-2xl bg-white space-y-4">
+          <input className="w-full p-2 border rounded" placeholder="Email" type="email" />
+          <input className="w-full p-2 border rounded" placeholder="Password" type="password" />
+          <button onClick={() => setView('feed')} className="w-full bg-purple-700 hover:bg-purple-800 text-white p-2 rounded">Sign In</button>
+          <button onClick={() => setView('signup')} className="w-full border p-2 rounded">Create Account</button>
+        </div>
+      )}
+
+      {view === "signup" && (
+        <div className="w-full max-w-sm p-6 shadow-2xl rounded-2xl bg-white space-y-4">
+          <input className="w-full p-2 border rounded" placeholder="Username" />
+          <input className="w-full p-2 border rounded" placeholder="Email" type="email" />
+          <input className="w-full p-2 border rounded" placeholder="Password" type="password" />
+          <button onClick={() => setView('feed')} className="w-full bg-purple-700 hover:bg-purple-800 text-white p-2 rounded">Sign Up</button>
+          <button onClick={() => setView('login')} className="w-full border p-2 rounded">Back to Login</button>
+        </div>
+      )}
+
+      {view === "feed" && (
+        <div className="w-full max-w-lg space-y-6">
+          {/* Upload Section */}
+          <div className="p-4 shadow-xl rounded-2xl bg-white flex space-x-2 items-center">
+            <button className="border p-2 rounded flex space-x-2 items-center">
+              <ImageIcon className="w-4 h-4" /> <span>Upload Photo</span>
+            </button>
+            <button className="border p-2 rounded flex space-x-2 items-center">
+              <VideoIcon className="w-4 h-4" /> <span>Upload Video</span>
+            </button>
+          </div>
+
+          {/* Post Example */}
+          <div className="shadow-xl rounded-2xl overflow-hidden bg-white">
+            <div className="p-4 space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-full bg-purple-200"></div>
+                <p className="font-semibold">User123</p>
+              </div>
+              <img
+                src="https://picsum.photos/600/400"
+                alt="post"
+                className="rounded-xl"
+              />
+              <div className="flex space-x-4 mt-2">
+                <button className="flex items-center space-x-1 text-gray-600 hover:text-red-500">
+                  <Heart className="w-4 h-4" /> <span>Like</span>
+                </button>
+                <button className="flex items-center space-x-1 text-gray-600 hover:text-blue-500">
+                  <MessageCircle className="w-4 h-4" /> <span>Comment</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
